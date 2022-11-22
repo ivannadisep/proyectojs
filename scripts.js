@@ -1,8 +1,8 @@
-let producto = parseInt(prompt('Que producto deseas comprar? 1.ocean - 2.lipa - 3.amelie - 4.chula'))
+/*let producto = parseInt(prompt('Que producto deseas comprar? 1.ocean - 2.lipa - 3.amelie - 4.chula'))
 let seguirComprando = true 
 let totalCompra = 0
 let decision
-
+*/
 //arreglo de productos
 const productosArray = []
 
@@ -26,11 +26,69 @@ productosArray.push(amelie);
 const chula = new NuevoProducto('Chula', 6000,10);
 productosArray.push(chula);
 
-console.log(productosArray)
+//console.log(productosArray)
+
+//DOM
+
+const selectProd = document.getElementById ('lista')
+
+productosArray.forEach(elemento=>{
+        const optionProd = document.createElement ('option')
+        optionProd.innerText = `${elemento.nombre} : $${elemento.precio}`
+        optionProd.setAttribute('id', `${elemento.id}`)
+        selectProd.append(optionProd)
+})
+
+//EVENTOS 
+const carrito = []
+
+const button = document.getElementById('button')
+const finalizar = document.getElementById('finalizar')
+
+button.onclick = () => {
+        const indexProd = selectProd.selectedIndex
+        const prooductoSeleccionado = productosArray [indexProd]
+        carrito.push(prooductoSeleccionado)
+}
+
+finalizar.onclick = () => {
+        let total = 0
+        carrito.forEach (prod =>{
+                total = total + prod.precio
+        })
+        alert (`Elegiste ${carrito.length} productos. El total de tu compra es ${total}`)
+
+}
+
+//STORAGE Y JSON
+const formularioUsuario = document.getElementById('formulario')
+const titulo = document.getElementById('titulo')
+const nombreUsuario = document.getElementById('nombre')
+const apellidoUsuario = document.getElementById('apellido')
+
+const infoUsuario = {}
+
+//evento 
+
+formularioUsuario.onsubmit = (e) =>{
+        e.preventDefault ()
+        infoUsuario.nombre = nombreUsuario.value
+        infoUsuario.apellido = apellidoUsuario.value
+        localStorage.setItem('infoUsuario',JSON.stringify(infoUsuario))
+}
+
+const infoUsuarioStorage = JSON.parse(localStorage.getItem('infoUsuario'))
+console.log(infoUsuarioStorage)
+if(infoUsuarioStorage.nombre !==""){
+        titulo.innerText = `Hola ${infoUsuarioStorage.nombre}, bienvenida de nuevo! `
+}
 
 
-while(seguirComprando===true){
+
+
 /*
+while(seguirComprando===true){}
+
         if (producto === ocean.id){
                 totalCompra = totalCompra + ocean.precio
         }   else if (producto=== lipa.id){
@@ -39,7 +97,7 @@ while(seguirComprando===true){
                 totalCompra = totalCompra + amelie.precio
         }   else if (producto=== chula){
                 totalCompra = totalCompra + chula.precio
-        }*/
+        }
 totalCompra = totalCompra + productosArray[producto-1].precio
 
 
@@ -68,4 +126,4 @@ if(valor<=6500){
 let valorDescuento = valor * (descuento/100)
 let valorFinal = valor - valorDescuento
 return valorFinal
-}
+}*/
