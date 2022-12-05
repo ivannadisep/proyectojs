@@ -51,14 +51,22 @@ button.onclick = () => {
         carrito.push(prooductoSeleccionado)
 }
 
-finalizar.onclick = () => {
-        let total = 0
+
+
+finalizar.onclick = () => Swal.fire({
+        title: 'Elegiste ${carrito.length} productos. El total de tu compra es ${total}',
+        width: 600,
+        padding: '3em',
+        color: '#716add',
+        background: '#fff ',
+      })
+
+/*let total = 0
         carrito.forEach (prod =>{
                 total = total + prod.precio
-        })
-        alert (`Elegiste ${carrito.length} productos. El total de tu compra es ${total}`)
+})
 
-}
+*/
 
 //STORAGE Y JSON
 const formularioUsuario = document.getElementById('formulario')
@@ -88,7 +96,6 @@ if(infoUsuarioStorage.nombre !==""){
 
 /*
 while(seguirComprando===true){}
-
         if (producto === ocean.id){
                 totalCompra = totalCompra + ocean.precio
         }   else if (producto=== lipa.id){
@@ -99,9 +106,6 @@ while(seguirComprando===true){}
                 totalCompra = totalCompra + chula.precio
         }
 totalCompra = totalCompra + productosArray[producto-1].precio
-
-
-
 decision = parseInt (prompt ('Quieres seguir comprando? 1.Si - 2.No'))
 if(decision===1){
     producto = parseInt(prompt('Que producto deseas comprar? 1.Ocean - 2.Lipa - 3.Amelie -4.Chula'))
@@ -109,12 +113,9 @@ if(decision===1){
     seguirComprando = false
 }
 }
-
 const totalCompraConDescuento = descuento (totalCompra)
 alert(`El total de tu compra es ${totalCompra}`)
-
 //funcion descuento
-
 function descuento(valor){
 let descuento = 0
 if(valor<=6500){
@@ -122,7 +123,6 @@ if(valor<=6500){
 } else if(valor >7000){
     descuento = 10
 }
-
 let valorDescuento = valor * (descuento/100)
 let valorFinal = valor - valorDescuento
 return valorFinal
