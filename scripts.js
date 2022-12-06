@@ -23,14 +23,17 @@ const lipa = new NuevoProducto('Lipa', 7500, 8, 2);
 productosArray.push(lipa);
 const amelie = new NuevoProducto('Amelie', 7500, 5, 3);
 productosArray.push(amelie);
-const chula = new NuevoProducto('Chula', 6000,10);
+const chula = new NuevoProducto('Chula', 6000,10, 4);
 productosArray.push(chula);
 
 //console.log(productosArray)
 
 //DOM
 
+
+
 const selectProd = document.getElementById ('lista')
+
 
 productosArray.forEach(elemento=>{
         const optionProd = document.createElement ('option')
@@ -38,6 +41,8 @@ productosArray.forEach(elemento=>{
         optionProd.setAttribute('id', `${elemento.id}`)
         selectProd.append(optionProd)
 })
+
+
 
 //EVENTOS 
 const carrito = []
@@ -49,24 +54,27 @@ button.onclick = () => {
         const indexProd = selectProd.selectedIndex
         const prooductoSeleccionado = productosArray [indexProd]
         carrito.push(prooductoSeleccionado)
+        console.log (indexProd)
 }
 
 
 
+
 finalizar.onclick = () => Swal.fire({
-        title: 'Elegiste ${carrito.length} productos. El total de tu compra es ${total}',
+        title: `Elegiste ${carrito.length} productos. El total de tu compra es ${total}`,
         width: 600,
         padding: '3em',
-        color: '#716add',
-        background: '#fff ',
-      })
+        color: '#000000',
+        background: '#FFEBCD ',
+        
+})
 
-/*let total = 0
+let total = 0
         carrito.forEach (prod =>{
                 total = total + prod.precio
 })
 
-*/
+
 
 //STORAGE Y JSON
 const formularioUsuario = document.getElementById('formulario')
@@ -86,7 +94,7 @@ formularioUsuario.onsubmit = (e) =>{
 }
 
 const infoUsuarioStorage = JSON.parse(localStorage.getItem('infoUsuario'))
-console.log(infoUsuarioStorage)
+//console.log(infoUsuarioStorage)
 if(infoUsuarioStorage.nombre !==""){
         titulo.innerText = `Hola ${infoUsuarioStorage.nombre}, bienvenida de nuevo! `
 }
