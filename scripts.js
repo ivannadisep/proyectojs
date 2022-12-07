@@ -60,7 +60,12 @@ button.onclick = () => {
 
 
 
-finalizar.onclick = () => Swal.fire({
+finalizar.onclick = () => {
+        let total = 0
+        carrito.forEach (prod =>{
+      total = total + prod.precio
+});
+Swal.fire({
         title: `Elegiste ${carrito.length} productos. El total de tu compra es ${total}`,
         width: 600,
         padding: '3em',
@@ -68,11 +73,9 @@ finalizar.onclick = () => Swal.fire({
         background: '#FFEBCD ',
         
 })
+}
 
-let total = 0
-        carrito.forEach (prod =>{
-                total = total + prod.precio
-})
+
 
 
 
